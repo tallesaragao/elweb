@@ -1,5 +1,6 @@
 $(function () {
 	$('[data-toggle="tooltip"]').tooltip();
+	$('[data-tt="tooltip"]').tooltip();
 	
 	$(document).click(function (event) {
 	    var clickover = $(event.target);

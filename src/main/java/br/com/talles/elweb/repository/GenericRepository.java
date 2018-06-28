@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import br.com.talles.elweb.model.Pessoa;
+
 public abstract class GenericRepository<T> implements IRepository<T> {
 
 	protected EntityManager manager;
@@ -20,6 +22,14 @@ public abstract class GenericRepository<T> implements IRepository<T> {
 	public List<T> listAll() {
 		String jpql = "select e from " + classe.getSimpleName() + " e";
 		TypedQuery<T> query = manager.createQuery(jpql, classe);
+		return query.getResultList();
+	}
+	
+	public List<T> listByRange(int firstIndex, int maxResults) {
+		String jpql = "select e from" + classe.getSimpleName() + " e";
+		TypedQuery<T> query = manager.createQuery(jpql, classe);
+		query.setFirstResult(firstIndex);
+		query.setMaxResults(maxResults);
 		return query.getResultList();
 	}
 

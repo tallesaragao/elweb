@@ -74,8 +74,24 @@ public class PessoaService {
 		pessoaRepository.update(pessoa);
 	}
 	
-	public List<Pessoa> listar() {
-		return pessoaRepository.listAll();
+	public List<Pessoa> listarAtivos() {
+		return pessoaRepository.listAtivos();
+	}
+	
+	public List<Pessoa> listarAtivosPorPagina(int pagina, int resultadosPorPagina) {
+		int firstIndex = 1;
+		firstIndex = firstIndex + (firstIndex * (pagina - 1));
+		return pessoaRepository.listAtivosByRange(firstIndex, resultadosPorPagina);
+	}
+	
+	public Pessoa buscarPorId(Long id) {
+		return pessoaRepository.findById(id);
+	}
+	
+	public int getNumeroPaginasPessoasAtivas(int resultadosPorPagina) {
+		int numeroPessoasAtivas = pessoaRepository.getNumeroPessoasAtivas(resultadosPorPagina);
+		int paginas = (int) Math.ceil(Double.valueOf(numeroPessoasAtivas) / Double.valueOf(resultadosPorPagina));
+		return paginas;
 	}
 	
 }

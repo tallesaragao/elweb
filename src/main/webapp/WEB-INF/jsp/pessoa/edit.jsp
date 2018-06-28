@@ -13,8 +13,9 @@
 				<i class="fa fa-check"></i> ${sucesso}
 			</div>
 		</c:if>
-		<h1>Cadastro de Pessoa</h1>
+		<h1>Edição de Pessoa</h1>
 		<form method="post">
+		<input type="hidden" name="pessoa.id" value="${pessoa.id}"/>
 			<div class="row">
 				<div class="col-12 col-md-6">
 					<div class="form-group">
@@ -54,8 +55,8 @@
 			</div>
 			<div class="row">
 				<div class="col-6">
-					<button type="submit" formaction="${linkTo[PessoaController].inserir(null)}"
-					class="btn btn-block btn-primary">Salvar</button>
+					<button type="submit" formaction="${linkTo[PessoaController].alterar(null)}"
+					class="btn btn-block btn-primary">Alterar</button>
 				</div>
 				<div class="col-6">
 					<a href="${linkTo[PessoaController].list()}"

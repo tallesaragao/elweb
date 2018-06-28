@@ -24,11 +24,11 @@
 	                	Pessoa
 	                </a>
 	                <div class="dropdown-menu" aria-labelledby="dropdownPessoa">
-	                    <a class="dropdown-item" href="#">
+	                    <a class="dropdown-item" href="${linkTo[PessoaController].form()}">
 	                    	<i class="fa fa-list"></i>
 	                    	Lista de pessoas
 	                    </a>
-	                    <a class="dropdown-item" href="#">
+	                    <a class="dropdown-item" href="${linkTo[PessoaController].list()}">
 	                    	<i class="fa fa-plus"></i>
 	                    	Nova pessoa
 	                    </a>
