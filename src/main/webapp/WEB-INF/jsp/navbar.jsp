@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
 	    <!-- Navbar brand -->
-	    <a class="navbar-brand" href="#">Projeto Eletiva Web</a>
+	    <a class="navbar-brand" href="${linkTo[HomeController].index()}">Projeto Eletiva Web</a>
 	
 	    <!-- Collapse button -->
 	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#app-nav" aria-controls="app-nav"
