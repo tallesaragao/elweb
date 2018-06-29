@@ -36,12 +36,10 @@
 								<td>${pessoa.nome}</td>
 								<td>${pessoa.cpf}</td>
 								<td>
-									<fmt:formatNumber value='${pessoa.altura}' 
-									pattern="#,##" minFractionDigits="2"/>
+									<fmt:formatNumber value='${pessoa.altura}' minFractionDigits="2"/>
 								</td>
 								<td>
-									<fmt:formatNumber value="${pessoa.massa}"
-									pattern="#,##" minFractionDigits="2"/>
+									<fmt:formatNumber value="${pessoa.massa}" minFractionDigits="3"/>
 								</td>
 								<td>
 									<a data-toggle="tooltip" title="Editar"
@@ -58,6 +56,72 @@
 					</tbody>
 				</table>
 			</div>
+			<nav id="paginacao">
+				<c:set var="anteriorHabilitado" value="${false}"/>
+				<c:set var="proximoHabilitado" value="${false}"/>
+				
+				<c:if test="${paginaSelecionada > 1}">
+					<c:set var="anteriorHabilitado" value="${true}"/>
+				</c:if>
+				<c:if test="${paginaSelecionada != paginas}">
+					<c:set var="proximoHabilitado" value="${true}"/>
+				</c:if>
+				
+				<c:set var="paginaInicialNav" value="${paginaSelecionada}"/>
+				<c:if test="${paginaInicialNav == 1}">						
+					<c:set var="paginaInicialNav" value="${paginaInicialNav + 1}"/>
+				</c:if>
+				<c:if test="${paginaInicialNav == paginas}">						
+					<c:set var="paginaInicialNav" value="${paginaInicialNav - 1}"/>
+				</c:if>
+				
+				<div class="row">
+					<div class="col-3">						
+						<small class="justify-content-end">Página ${paginaSelecionada} de ${paginas}</small>
+					</div>
+					<div class="col-9">
+						<ul class="pagination justify-content-end">
+							<c:if test="${paginaSelecionada >= 1}">
+								<li class="page-item ${paginaSelecionada == 1 ? 'disabled' : ''}">
+									<a class="page-link" href="${linkTo[PessoaController].listarAtivosPagina(1)}">
+										<i class="fa fa-angle-double-left"></i>
+									</a>
+								</li>
+							</c:if>
+							<li class="page-item ${anteriorHabilitado ? '' : 'disabled' }">
+								<a class="page-link" href="${linkTo[PessoaController].listarAtivosPagina(paginaSelecionada - 1)}">
+									<i class="fa fa-angle-left"></i>
+		       					</a>
+							</li>
+							<c:forEach var="i" begin="${paginaInicialNav - 1}" end="${paginaInicialNav + 1}">
+								<c:if test="${i <= paginas && i >= 1}">
+									<li class="page-item ${i == paginaSelecionada ? 'active' : ''}">
+										<a class="page-link" href="${linkTo[PessoaController].listarAtivosPagina(i)}">${i}</a>
+									</li>
+								</c:if>
+							</c:forEach>
+							<c:if test="${paginaSelecionada != paginas && paginas > 4}">
+								<li class="page-item disabled">
+									<a class="page-link" href="#">...</a>
+								</li>
+							</c:if>
+							<li class="page-item ${proximoHabilitado ? '' : 'disabled' }">
+								<a class="page-link" href="${linkTo[PessoaController].listarAtivosPagina(paginaSelecionada + 1)}">
+									<i class="fa fa-angle-right"></i>
+								</a>
+							</li>
+							<c:if test="${paginaSelecionada <= paginas}">
+								<li class="page-item ${paginaSelecionada == paginas ? 'disabled' : ''}">
+									<a class="page-link" href="${linkTo[PessoaController].listarAtivosPagina(paginas)}">
+										<i class="fa fa-angle-double-right"></i>
+									</a>
+								</li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
+				
+			</nav>
 		</div>
 		
 		<c:forEach var="pessoa" items="${pessoas}">
@@ -87,8 +151,7 @@
 	        				</form>
 						</div>
 					</div>
-				</div>
-			
+				</div>			
 			</div>
 		</c:forEach>
 

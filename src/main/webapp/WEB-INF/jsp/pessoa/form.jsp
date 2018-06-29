@@ -46,8 +46,8 @@
 					<div class="form-group">
 						<label for="massa">Massa (kg)</label>
 						<input type="text" name="pessoa.massa" class="form-control" id="massa"
-					 	value="<fmt:formatNumber value='${pessoa.massa}' minFractionDigits='2'/>"
-					 	data-mask="#0,00" data-mask-reverse="true">
+					 	value="<fmt:formatNumber value='${pessoa.massa}' minFractionDigits='3'/>"
+					 	data-mask="#0,000" data-mask-reverse="true">
 						<app:validationMessage name="pessoa.massa"/>
 					</div>
 				</div>

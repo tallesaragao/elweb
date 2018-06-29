@@ -50,8 +50,9 @@ public class PessoaController {
 	}
 	
 	public void list() {
-		List<Pessoa> pessoas = pessoaService.listarAtivos();
-		result.include("pessoas", pessoas);
+		if(!result.included().containsKey("pessoas")) {
+			result.redirectTo(this).listarAtivosPagina(1);
+		}
 	}
 	
 	@Path("pessoa/list/page/{pagina}")
@@ -60,15 +61,17 @@ public class PessoaController {
 		int paginas = pessoaService.getNumeroPaginasPessoasAtivas(resultadosPorPagina);
 		if(paginas == 0) {
 			result.include("aviso", "Nenhuma pessoa encontrada");
+			result.include("paginas", paginas);
 			result.redirectTo(this).list();
-		}
-		if(pagina > paginas) {
+		} else if(pagina > paginas) {
 			result.include("aviso", "Página não encontrada");
+			result.include("paginas", paginas);
 			result.redirectTo(this).listarAtivosPagina(1);
 		} else {
 			List<Pessoa> pessoas = pessoaService.listarAtivosPorPagina(pagina, resultadosPorPagina);
 			result.include("pessoas", pessoas);
 			result.include("paginaSelecionada", pagina);
+			result.include("paginas", paginas);
 			result.use(Results.page()).of(PessoaController.class).list();
 		}
 	}

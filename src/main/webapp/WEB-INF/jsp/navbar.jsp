@@ -14,26 +14,29 @@
 	
 	    <!-- Collapsible content -->
 	    <div class="collapse navbar-collapse" id="app-nav">
+	    
+	    
 	
 	        <!-- Links -->
 	        <ul class="navbar-nav">
-	            <li class="nav-item dropdown">
-	                <a class="nav-link dropdown-toggle" id="dropdownPessoa" data-toggle="dropdown"
-	                aria-haspopup="true" aria-expanded="false">
-	                	<i class="fas fa-user"></i>
+	        
+	        	<li class="nav-item dropdown">
+	        		<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+	        			<i class="fas fa-user"></i>
 	                	Pessoa
-	                </a>
-	                <div class="dropdown-menu" aria-labelledby="dropdownPessoa">
-	                    <a class="dropdown-item" href="${linkTo[PessoaController].form()}">
+	        		</a>
+	        		<div class="dropdown-menu" aria-labelledby="dropdownPessoa">
+	                    <a class="dropdown-item" href="${linkTo[PessoaController].list()}">
 	                    	<i class="fa fa-list"></i>
 	                    	Lista de pessoas
 	                    </a>
-	                    <a class="dropdown-item" href="${linkTo[PessoaController].list()}">
+	                    <a class="dropdown-item" href="${linkTo[PessoaController].form()}">
 	                    	<i class="fa fa-plus"></i>
 	                    	Nova pessoa
 	                    </a>
 	                </div>
-	            </li>
+			    </li>
+	           
 	        </ul>
 	        
 	       

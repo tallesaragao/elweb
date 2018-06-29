@@ -38,11 +38,11 @@ public class PessoaRepository extends GenericRepository<Pessoa> {
 		return query.getResultList();
 	}
 
-	public int getNumeroPessoasAtivas(int resultadosPorPagina) {
-		String jpql = "select count(p.pessoa_id) from Pessoa p where p.ativo = :ativo";
-		Query query = manager.createQuery(jpql);
+	public Long getNumeroPessoasAtivas(int resultadosPorPagina) {
+		String jpql = "select count(p.id) from Pessoa p where p.ativo = :ativo";
+		TypedQuery<Long> query = manager.createQuery(jpql, Long.class);
 		query.setParameter("ativo", true);
-		return query.getFirstResult();
+		return query.getSingleResult();
 		
 	}
 }

@@ -79,8 +79,8 @@ public class PessoaService {
 	}
 	
 	public List<Pessoa> listarAtivosPorPagina(int pagina, int resultadosPorPagina) {
-		int firstIndex = 1;
-		firstIndex = firstIndex + (firstIndex * (pagina - 1));
+		int firstIndex = 0;
+		firstIndex = firstIndex + (resultadosPorPagina * (pagina - 1));
 		return pessoaRepository.listAtivosByRange(firstIndex, resultadosPorPagina);
 	}
 	
@@ -89,7 +89,7 @@ public class PessoaService {
 	}
 	
 	public int getNumeroPaginasPessoasAtivas(int resultadosPorPagina) {
-		int numeroPessoasAtivas = pessoaRepository.getNumeroPessoasAtivas(resultadosPorPagina);
+		Long numeroPessoasAtivas = pessoaRepository.getNumeroPessoasAtivas(resultadosPorPagina);
 		int paginas = (int) Math.ceil(Double.valueOf(numeroPessoasAtivas) / Double.valueOf(resultadosPorPagina));
 		return paginas;
 	}
