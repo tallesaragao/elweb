@@ -11,20 +11,18 @@ import br.com.caelum.vraptor.Result;
 public class HomeController {
 	
 	private Result result;
-	private EntityManager manager;
 
 	public HomeController() {
-		this(null, null);
+		this(null);
 	}
 	
 	@Inject
-	public HomeController(Result result, EntityManager manager) {
+	public HomeController(Result result) {
 		this.result = result;
-		this.manager = manager;
 	}
 
 	@Path("/")
 	public void index() {
-		result.include("msg", "Message from your controller");
+		result.redirectTo(PessoaController.class).list();
 	}
 }
